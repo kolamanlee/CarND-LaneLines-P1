@@ -176,3 +176,5 @@ Here's a [link to my video result](./output_videos/P2_video_output.mp4)
 ##### 1). change the birds' eye (src, dst);
 ##### 2). change the pixels to the meter according to the real pixels means value provided in the  function fitPoly() and appy for the function laneSanityCheck()
 ##### 3). add class Line() and Pipeline() class to store the fit ok frame and skip the fit failure frame.
+##### 4). modify the transformByColorGradients(img, s_thresh=(170, 255), sx_thresh=(20, 100)), to remove the sobel Y axis according the suggestion from the reviewer.
+
