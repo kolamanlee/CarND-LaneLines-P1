@@ -154,6 +154,9 @@ The implement codes are the step 9 cells that embeded in the P2.ipynb. The major
 ##### 5). call findLanePixels() to get left and right lane inds;
 ##### 6). after that, plot the lane and data to get the final image
 
+And add a Line() and Pipeline() class to store the fit_ok frame and skip the fit failure frame for the continure video.
+
+
 finally, the test images are outputed on the directory ./output_images.
 
 ---
@@ -169,4 +172,9 @@ Here's a [link to my video result](./output_videos/P2_video_output.mp4)
 
 ### Discussion
 
-#### There are some problem for the left and righ lane selection that can't meet the some of videos and test images, and should improve by other logical code.
+#### Based on the first try to submit, according to the suggestion, have the following major changes:
+##### 1). change the birds' eye (src, dst);
+##### 2). change the pixels to the meter according to the real pixels means value provided in the  function fitPoly() and appy for the function laneSanityCheck()
+##### 3). add class Line() and Pipeline() class to store the fit ok frame and skip the fit failure frame.
+##### 4). modify the transformByColorGradients(img, s_thresh=(170, 255), sx_thresh=(20, 100)), to remove the sobel Y axis according the suggestion from the reviewer.
+
