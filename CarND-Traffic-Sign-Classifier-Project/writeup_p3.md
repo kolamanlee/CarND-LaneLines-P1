@@ -38,10 +38,10 @@ Using numpy's function, get the basic information
 
 Using the matplotlib to plot the all classes/labels(43)images, and using histogram to show all numbers of each labels.
 
-here is the output images of the label and the histogram:
+here is an example of the labels imag and the histogram:
 
 <table><tr>
-<td><img src='./output_images/example.jpg' title='example image' border=0></td>
+<td><img src='./output_images/sign_example.jpg' title='example image' border=0></td>
 <td><img src='./output_images/histogram.jpg' title="all label's number" border=0></td>
 </tr></table>
 
@@ -56,8 +56,8 @@ Before preprocess the image, I had a trial to train and validate the model archi
 First, convert the images to grayscale because Usually the information contained in the grey scale image is enough for classification. And has the following example:
 
 <table><tr>
-<td><img src='./output_images/pic_3channels.jpg' title='RGB image' border=0></td>
-<td><img src='./output_images/pic_grayed.jpg' title="Grayed image" border=0></td>
+<td><img src='./output_images/img_3channels.jpg' title='RGB image' border=0></td>
+<td><img src='./output_images/img_grayed.jpg' title="Grayed image" border=0></td>
 </tr></table>
 
 And then normalized the image data to standardize the inputs for making training faster and reduce the chances of getting stuck. The mean value of train set after normalized is around -0.354081335648.
@@ -108,51 +108,45 @@ After several trials, to acheive the at least 0.93 accuracy on the validation da
 
 ### Use the model to make predictions on new images
 
-#### 1. Choose five German traffic signs found on the web
+#### 1. Choose five traffic signs found on the web
 
 I found 5 traffic signs image on the web, the sizes are different and rlevant labels vary in 43 classes. Plot them as below:
 
 <table><tr>
-<td><img src='./output_images/example.jpg' title='example image' border=0></td>
-<td><img src='./output_images/histogram.jpg' title="all label's number" border=0></td>
+<td><img src='./found_sign_images/11-right-of-way.jpg' title='11-right-of-way' border=0></td>
+<td><img src='./found_sign_images/14-stop.jpg' title='14-stop' border=0></td>
+<td><img src='./found_sign_images/2-speed limit(50kmh).jpg' title='2-speed limit(50kmh)' border=0></td>
+<td><img src='./found_sign_images/28-Children crossing.jpeg' title='28-Children crossing' border=0></td>
+<td><img src='./found_sign_images/4-speed limit(70kmh).jpg' title='/4-speed limit(70kmh)' border=0></td>
 </tr></table>
 
 
 #### 2. predictions on these new traffic signs
 
-and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
-
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| right-of-way     		| right-of-way  								| 
+| stop     			    | stop  										|
+| speed limit(50km/h)	| speed limit(50km/h)							|
+| Children crossing	    | right-of-way  				 				|
+| speed limit(70km/h)	| speed limit(70km/h)     						|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
-
-#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
-
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
 
 
-For the second image ... 
+#### 3. The softmax probabilities for each prediction. 
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
+Using top_k() to get the probabilities of each images. The following pictues show the 5 images' relevant top_K prediction.
+
+<table><tr>
+<td><img src='./output_images/softmax_probabilities.jpg' title='Softmax probabilities' border=0></td>
+</tr></table>
+
+
+
+
 
 
