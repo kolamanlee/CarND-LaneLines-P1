@@ -41,8 +41,8 @@ Using the matplotlib to plot the all classes/labels(43)images, and using histogr
 here is an example of the labels imag and the histogram:
 
 <table><tr>
-<td><img src='./output_images/sign_example.jpg' title='example image' border=0></td>
-<td><img src='./output_images/histogram.jpg' title="all label's number" border=0></td>
+<td><img src='./output_images/sign_example.png' title='example image' border=0></td>
+<td><img src='./output_images/histogram.png' title="all label's number" border=0></td>
 </tr></table>
 
 
@@ -56,8 +56,8 @@ Before preprocess the image, I had a trial to train and validate the model archi
 First, convert the images to grayscale because Usually the information contained in the grey scale image is enough for classification. And has the following example:
 
 <table><tr>
-<td><img src='./output_images/img_3channels.jpg' title='RGB image' border=0></td>
-<td><img src='./output_images/img_grayed.jpg' title="Grayed image" border=0></td>
+<td><img src='./output_images/img_3channels.png' title='RGB image' border=0></td>
+<td><img src='./output_images/img_grayed.png' title="Grayed image" border=0></td>
 </tr></table>
 
 And then normalized the image data to standardize the inputs for making training faster and reduce the chances of getting stuck. The mean value of train set after normalized is around -0.354081335648.
@@ -142,7 +142,7 @@ The model was able to correctly guess 4 of the 5 traffic signs, which gives an a
 Using top_k() to get the probabilities of each images. The following pictues show the 5 images' relevant top_K prediction.
 
 <table><tr>
-<td><img src='./output_images/softmax_probabilities.jpg' title='Softmax probabilities' border=0></td>
+<td><img src='./output_images/softmax_probabilities.png' title='Softmax probabilities' border=0></td>
 </tr></table>
 
 
