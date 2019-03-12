@@ -115,7 +115,7 @@ To capture good driving behavior, as the project instruction, the car should sta
 
 <table><tr>
 <td><img src='./output_images/center1.jpg' title='center1 image' border=0></td>
-<td><img src='./output_images/center2.png' title="center2 image" border=0></td>
+<td><img src='./output_images/center2.jpg' title="center2 image" border=0></td>
 </tr></table>
 
 
@@ -139,12 +139,12 @@ I used this training data for training the model.
 The validation set helped determine if the model was over or under fitting. 
 I used an adam optimizer so that manually training the learning rate wasn't necessary. The ideal number of epochs was 3 as evidenced by trying some epochs. Here are the output of the training epoches:
 
-*Epoch 12/3
-*4579/4579 [==============================] - 1772s - loss: 0.0109 - val_loss: 0.0114
-*Epoch 2/3
-*4579/4579 [==============================] - 1774s - loss: 0.0040 - val_loss: 0.0109
-*Epoch 3/3
-*4579/4579 [==============================] - 1784s - loss: 0.0027 - val_loss: 0.0095
+* Epoch 12/3
+* 4579/4579 [==============================] - 1772s - loss: 0.0109 - val_loss: 0.0114
+* Epoch 2/3
+* 4579/4579 [==============================] - 1774s - loss: 0.0040 - val_loss: 0.0109
+* Epoch 3/3
+* 4579/4579 [==============================] - 1784s - loss: 0.0027 - val_loss: 0.0095
 
 
 
