@@ -111,7 +111,7 @@ The final model architecture (nvidia_network()) consisted of a convolution neura
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, as the project instruction, the car should stay in the center of the road as much as possible. For example as below:
+To capture good driving behavior, as the project instruction, the car should stay in the center of the road as much as possible. For example, 2 ceter images as below:
 
 <table><tr>
 <td><img src='./output_images/center1.jpg' title='center1 image' border=0></td>
@@ -120,7 +120,7 @@ To capture good driving behavior, as the project instruction, the car should sta
 
 
 Also, recorded the vehicle recovering from the left side and right sides of the road back to center, this idea is also provided by the project instruction. I adopted and the steering angele correction for left side is +1.5 and right side is -1.5.
-
+for example: <left> <center> <right> 
 
 <table><tr>
 <td><img src='./output_images/left1.jpg' title='left image' border=0></td>
@@ -139,7 +139,7 @@ I used this training data for training the model.
 The validation set helped determine if the model was over or under fitting. 
 I used an adam optimizer so that manually training the learning rate wasn't necessary. The ideal number of epochs was 3 as evidenced by trying some epochs. Here are the output of the training epoches:
 
-* Epoch 12/3
+* Epoch 1/3
 * 4579/4579 [==============================] - 1772s - loss: 0.0109 - val_loss: 0.0114
 * Epoch 2/3
 * 4579/4579 [==============================] - 1774s - loss: 0.0040 - val_loss: 0.0109
