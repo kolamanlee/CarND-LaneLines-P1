@@ -60,8 +60,19 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   /**
    * TODO: update the state by using Extended Kalman Filter equations
    */
+  //convert from Cartesian coordinates to polar coordinates
+  VectorXd x_radar(3);
+  x_radar<<0,
+          0,
+          0;
   
-  VectorXd z_pred = H_ * x_;
+  x_radar(0) = sqrt(x_[0]*x_[0] + x_[1]*x_[1]);
+  x_radar(1) = atan(x_[1]/x_[0]);
+  x_radar(2) = (x_[0]*x_[2]+x_[1]*x_[3])/x_radar(0);  
+
+  
+  //VectorXd z_pred = H_ * x_;
+  VectorXd z_pred = x_radar;
   VectorXd y = z - z_pred;
   //Hj
   MatrixXd Hj = CalculateJacobian();

@@ -66,7 +66,7 @@ int main() {
           // reads first element from the current line
           string sensor_type;
           iss >> sensor_type;
-
+    
           if (sensor_type.compare("L") == 0) {
             meas_package.sensor_type_ = MeasurementPackage::LASER;
             meas_package.raw_measurements_ = VectorXd(2);
