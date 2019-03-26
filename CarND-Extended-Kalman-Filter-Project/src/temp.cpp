@@ -40,3 +40,34 @@ int main() {
 
   return 0;
 }
+
+void filter(VectorXd &x, MatrixXd &P) {
+
+  for (unsigned int n = 0; n < measurements.size(); ++n) {
+
+    VectorXd z = measurements[n];
+    // TODO: YOUR CODE HERE
+    /**
+     * KF Measurement update step
+     */
+    VectorXd y = z - H * x;
+    MatrixXd Ht = H.transpose();
+    MatrixXd S = H * P * Ht + R;
+    MatrixXd Si = S.inverse();
+    MatrixXd K =  P * Ht * Si;
+
+    // new state
+    x = x + (K * y);
+    P = (I - K * H) * P;
+
+    /**
+     * KF Prediction step
+     */
+    x = F * x + u;
+    MatrixXd Ft = F.transpose();
+    P = F * P * Ft + Q;
+
+    cout << "x=" << endl <<  x << endl;
+    cout << "P=" << endl <<  P << endl;
+  }
+}

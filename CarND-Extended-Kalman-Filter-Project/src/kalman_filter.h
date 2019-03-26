@@ -46,6 +46,13 @@ class KalmanFilter {
    */
   void UpdateEKF(const Eigen::VectorXd &z);
 
+  /**
+   * CalculateJacobian Hj by the current state
+   * @param z The measurement at k+1
+   */
+  void CalculateJacobian();
+
+
   // state vector
   Eigen::VectorXd x_;
 
