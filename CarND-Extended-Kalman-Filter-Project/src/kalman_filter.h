@@ -50,7 +50,7 @@ class KalmanFilter {
    * CalculateJacobian Hj by the current state
    * @param z The measurement at k+1
    */
-  void CalculateJacobian();
+  MatrixXd CalculateJacobian();
 
 
   // state vector
