@@ -87,7 +87,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      * You'll need to convert radar from polar to cartesian coordinates.
      */
     
-    previous_timestamp_ = measurement_pack.timestamp_
+    previous_timestamp_ = measurement_pack.timestamp_;
 
     // first measurement
     cout << "EKF: " << endl;
@@ -134,7 +134,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   //
   float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
   previous_timestamp_ = measurement_pack.timestamp_;
-
+  
   noise_ax = 9;
   noise_ay = 9;
 
@@ -169,7 +169,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     // TODO: Radar updates
     // Convert radar from polar to cartesian coordinates 
     float px,py;
-    VectorXd(4) _measurements_;
+
+    VectorXd _measurements_(4);
+    
     px = cos(measurement_pack.raw_measurements_[1]) * measurement_pack.raw_measurements_[0]; //cos(theta)*ro
     py = sin(measurement_pack.raw_measurements_[1]) * measurement_pack.raw_measurements_[0]; //sin(theta)*ro
     _measurements_ << px,
@@ -177,7 +179,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
                       0,
                       0;
     ekf_.R_ = R_radar_;
-    
+
     ekf_.UpdateEKF(_measurements_);
 
   } else {
