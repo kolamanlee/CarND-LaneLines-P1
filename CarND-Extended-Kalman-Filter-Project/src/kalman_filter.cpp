@@ -1,4 +1,5 @@
 #include "kalman_filter.h"
+#include <iostream>
 #include "tools.h"
 
 using Eigen::MatrixXd;
