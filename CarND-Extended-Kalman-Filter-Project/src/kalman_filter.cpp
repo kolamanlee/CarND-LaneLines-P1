@@ -71,11 +71,10 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   x_radar(2) = (x_[0]*x_[2]+x_[1]*x_[3])/x_radar(0);  
 
   
-  //VectorXd z_pred = H_ * x_;
   VectorXd z_pred = x_radar;
   VectorXd y = z - z_pred;
   //Hj
-  MatrixXd Hj = CalculateJacobian();
+  MatrixXd Hj = H_;
   //
   MatrixXd Ht = Hj.transpose();
   MatrixXd S = Hj * P_ * Ht + R_;
@@ -88,32 +87,5 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   long x_size = x_.size();
   MatrixXd I = MatrixXd::Identity(x_size, x_size);
   P_ = (I - K * Hj) * P_;  
-}
-
-MatrixXd KalmanFilter::CalculateJacobian() {
-
-  MatrixXd Hj(3,4);
-  // recover state parameters
-  float px = x_(0);
-  float py = x_(1);
-  float vx = x_(2);
-  float vy = x_(3);
-
-  // pre-compute a set of terms to avoid repeated calculation
-  float c1 = px*px+py*py;
-  float c2 = sqrt(c1);
-  float c3 = (c1*c2);
-
-  // check division by zero
-  if (fabs(c1) < 0.0001) {
-    cout << "CalculateJacobian () - Error - Division by Zero" << endl;
-    return Hj;
-  }
-
-  // compute the Jacobian matrix
-  Hj << (px/c2), (py/c2), 0, 0,
-      -(py/c1), (px/c1), 0, 0,
-      py*(vx*py - vy*px)/c3, px*(px*vy - py*vx)/c3, px/c2, py/c2;
-
-  return Hj;
+  
 }
