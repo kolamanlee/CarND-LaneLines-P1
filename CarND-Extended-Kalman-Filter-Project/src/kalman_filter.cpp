@@ -7,6 +7,7 @@ using Eigen::VectorXd;
 using std::cout;
 using std::endl;
 
+#define pi 3.1415926
 /* 
  * Please note that the Eigen library does not initialize 
  *   VectorXd or MatrixXd objects with zeros upon creation.
@@ -69,6 +70,9 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   x_radar(0) = sqrt(x_[0]*x_[0] + x_[1]*x_[1]);
   //x_radar(1) = atan(x_[1]/x_[0]);
   x_radar(1) = atan2(x_[1], x_[0]);
+  //
+  if(x_radar(1)> pi)  x_radar(1)-= 2* pi;
+  if(x_radar(1) <-pi) x_radar(1)+= 2* pi;
   //
   if (fabs(x_radar(0)) < 0.0001) {
     x_radar(2) = 0;
