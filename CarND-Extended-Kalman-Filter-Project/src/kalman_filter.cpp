@@ -7,7 +7,7 @@ using Eigen::VectorXd;
 using std::cout;
 using std::endl;
 
-#define pi 3.1415926
+#define pi 3.14159265358979f
 /* 
  * Please note that the Eigen library does not initialize 
  *   VectorXd or MatrixXd objects with zeros upon creation.
@@ -43,10 +43,10 @@ void KalmanFilter::Update(const VectorXd &z) {
    */
   VectorXd z_pred = H_ * x_;
   VectorXd y = z - z_pred;
-  MatrixXd Ht = H_.transpose();
-  MatrixXd S = H_ * P_ * Ht + R_;
+  MatrixXd Ht = H_.transpose();  
+  MatrixXd PHt = P_ * Ht; // put here is to prevent duplicate calculations
+  MatrixXd S = H_*PHt + R_;// == H_ * P_ * Ht + R_;
   MatrixXd Si = S.inverse();
-  MatrixXd PHt = P_ * Ht;
   MatrixXd K = PHt * Si;
 
   //new estimate
@@ -71,9 +71,6 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   //x_radar(1) = atan(x_[1]/x_[0]);
   x_radar(1) = atan2(x_[1], x_[0]);
   //
-  if(x_radar(1)> pi)  x_radar(1)-= 2* pi;
-  if(x_radar(1) <-pi) x_radar(1)+= 2* pi;
-  //
   if (fabs(x_radar(0)) < 0.0001) {
     x_radar(2) = 0;
   }
@@ -83,13 +80,16 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   
   VectorXd z_pred = x_radar;
   VectorXd y = z - z_pred;
+  //normalize the angle, phi is between -pi and +pi;
+  while(y[1] < -pi) y[1] += 2*pi;
+  while(y[1] >  pi) y[1] -= 2*pi;
   //Hj
   MatrixXd Hj = H_;
   //
   MatrixXd Ht = Hj.transpose();
-  MatrixXd S = Hj * P_ * Ht + R_;
-  MatrixXd Si = S.inverse();
   MatrixXd PHt = P_ * Ht;
+  MatrixXd S = Hj*PHt + R_;// == Hj * P_ * Ht + R_;
+  MatrixXd Si = S.inverse();
   MatrixXd K = PHt * Si;
 
   //new estimate
